@@ -127,3 +127,35 @@ app.delete('/api/v1/attractions/:id', (req, res) => {
       res.status(500).json({ error });
     });
 });
+
+app.delete('/api/v1/cities/:id', (req, res) => {
+  let found;
+  database('cities').select()
+    .then(cities => {
+      found = cities.find(city => {
+        return city.id === parseInt(req.params.id);
+      });
+      if (!found) {
+        return res.status(404).json({ 
+          error: `Not able to delete becuase no city found with an id: ${req.params.id}.`
+        });
+      } else {
+        database('attractions').where('city_id', req.params.id).del()
+          .then(attractions => {
+            database('cities').where('id', req.params.id).del()
+              .then(city => {
+                return res.status(200).json(`Successfully deleted city with id: ${req.params.id}`)
+              })
+              .catch(error => {
+                return res.status(500).json({ error });
+              })
+          })
+          .catch(error => {
+            return res.status(500).json({ error });
+          })
+      }
+    })
+    .catch(error => {
+      return res.status(500).json({ error });
+    });
+});
