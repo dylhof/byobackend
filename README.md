@@ -104,11 +104,12 @@ Request: ```/api/v1/attractions/14```
 
 ### ```POST /api/v1/cities```  
 **Required Input for Request Body**  
-| Name | Type  | Description |
-|---|---|---|
-|```city_name```|```string```| Name of a city in Thailand |
-|```avg_may_high```|```integer```| Degrees in farenheit of the city's average high during May|
-|```avg_may_low``` |```integer```| Degrees in farenheit of the city's average low during May |  
+
+| Name       | Type          | Description  |
+| ------------- | ------------- | ----- |
+| `city_name`      | `string` | Name of a city in Thailand |
+| `avg_may_high`      | `integer`      |   Degrees in farenheit of the city's average high during May |
+| `avg_may_low`  | `integer`     |    Degrees in farenheit of the city's average low during May | 
 **Example Response**
 ```
 {
