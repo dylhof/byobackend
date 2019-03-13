@@ -110,6 +110,7 @@ Request: ```/api/v1/attractions/14```
 | `city_name`      | `string` | Name of a city in Thailand |
 | `avg_may_high`      | `integer`      |   Degrees in farenheit of the city's average high during May |
 | `avg_may_low`  | `integer`     |    Degrees in farenheit of the city's average low during May | 
+  
 **Example Response**
 ```
 {
@@ -120,12 +121,13 @@ Request: ```/api/v1/attractions/14```
 ```  
 
 ### ```POST /api/v1/attractions```   
-**Required Input for Request Body**
-| Name        | Type        | Description                                 |
-|-------------|-----------  |---------------------------------------------|
-|```name```   |```string``` | Name of the attraction                      |
-|```link```   |```string``` | Link to additional information about it     |
-|```city_id```|```integer```| Id of the city the attraction is located in |  
+**Required Input for Request Body**  
+| Name       | Type          | Description  |
+| ------------- | ------------- | ----- |
+| `name`      | `string` | Name of the attraction |
+| `link`      | `string`      |   Link to additional information |
+| `city_id`  | `integer`     |    Id of the city the attraction is located in | 
+ 
 
 **Example Response**
 ```
