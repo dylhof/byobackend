@@ -122,12 +122,13 @@ Request: ```/api/v1/attractions/14```
 
 ### ```POST /api/v1/attractions```   
 **Required Input for Request Body**  
+
 | Name       | Type          | Description  |
 | ------------- | ------------- | ----- |
-| `name`      | `string` | Name of the attraction |
+| `name`      | `string` | Name of of the attraction |
 | `link`      | `string`      |   Link to additional information |
 | `city_id`  | `integer`     |    Id of the city the attraction is located in | 
- 
+   
 
 **Example Response**
 ```
