@@ -58,3 +58,72 @@ app.get('/api/v1/attractions/:id', (req, res) => {
       return res.status(500).json({ error });
     });
 });
+
+app.post('/api/v1/cities', (req, res) => {
+  const city = req.body;
+  for (let requiredParameter of ['city_name', 'avg_may_high', 'avg_may_low']) {
+    if (!city[requiredParameter]) {
+      return res.status(422).send({ error: 
+        `Expected format: { 
+          city_name: <String>, avg_may_high: <Integer>, avg_may_low: <Integer>
+          }. You are missing a "${requiredParameter}" property.`
+        }
+      );
+    }
+  }
+
+  database('cities').insert(city, 'id')
+    .then(city => {
+      res.status(201).json({ id: city[0] });
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
+
+app.post('/api/v1/attractions', (req, res) => {
+  const attraction = req.body;
+  for(let requiredParameter of ['name', 'link', 'city_id']) {
+    if (!attraction[requiredParameter]) {
+      return res.status(422).send({ error: 
+        `Expected format: {
+          name: <String>, link: <String>, city_id: <Integer>
+          }. You are missing a "${requiredParameter}" property.`
+        }
+      );
+    }
+  }
+  database('attractions').insert(attraction, 'id')
+    .then(attraction => {
+      res.status(201).json({ id: attraction[0] });
+    })
+    .catch(error => {
+      res.status(500).json({ error })
+    });
+});
+
+app.delete('/api/v1/attractions/:id', (req, res) => {
+  let found;
+  database('attractions').select()
+    .then(attractions => {
+      found = attractions.find(attraction => {
+        return attraction.id === parseInt(req.params.id)
+      });
+      if (!found) {
+        return res.status(404).json({
+          error: `Not able to delete. Attraction not found with an id: ${req.params.id}.`
+        });
+      } else {
+        database('attractions').where('id', req.params.id).del()
+          .then(attraction => {
+            return res.status(202).json('Sucessfully deleted attraction');
+          })
+          .catch(error => {
+            res.status(500).json({ error });
+          })
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
