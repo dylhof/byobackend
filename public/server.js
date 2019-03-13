@@ -103,11 +103,13 @@ app.post('/api/v1/attractions', (req, res) => {
 });
 
 app.delete('/api/v1/attractions/:id', (req, res) => {
-  let found;
+  let found = false;
   database('attractions').select()
     .then(attractions => {
-      found = attractions.find(attraction => {
-        return attraction.id === parseInt(req.params.id)
+      attractions.forEach(attraction => {
+        if (attraction.id === parseInt(req.params.id)) {
+          found = true;
+        }
       });
       if (!found) {
         return res.status(404).json({
@@ -115,8 +117,8 @@ app.delete('/api/v1/attractions/:id', (req, res) => {
         });
       } else {
         database('attractions').where('id', req.params.id).del()
-          .then(attraction => {
-            return res.status(202).json('Sucessfully deleted attraction');
+          .then(() => {
+            res.status(202).json('Sucessfully deleted attraction');
           })
           .catch(error => {
             res.status(500).json({ error });
@@ -129,11 +131,13 @@ app.delete('/api/v1/attractions/:id', (req, res) => {
 });
 
 app.delete('/api/v1/cities/:id', (req, res) => {
-  let found;
+  let found = false;
   database('cities').select()
     .then(cities => {
-      found = cities.find(city => {
-        return city.id === parseInt(req.params.id);
+      cities.forEach(city => {
+        if (city.id === parseInt(req.params.id)) {
+          found = true;
+        }
       });
       if (!found) {
         return res.status(404).json({ 
@@ -141,21 +145,21 @@ app.delete('/api/v1/cities/:id', (req, res) => {
         });
       } else {
         database('attractions').where('city_id', req.params.id).del()
-          .then(attractions => {
+          .then(() => {
             database('cities').where('id', req.params.id).del()
-              .then(city => {
-                return res.status(200).json(`Successfully deleted city with id: ${req.params.id}`)
+              .then(() => {
+                res.status(200).json(`Successfully deleted city with id: ${req.params.id}`)
               })
               .catch(error => {
-                return res.status(500).json({ error });
+                res.status(500).json({ error });
               })
           })
           .catch(error => {
-            return res.status(500).json({ error });
+            res.status(500).json({ error });
           })
       }
     })
     .catch(error => {
-      return res.status(500).json({ error });
+      res.status(500).json({ error });
     });
 });
