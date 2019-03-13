@@ -1,10 +1,9 @@
 # BYOBackend - Thailand Cities API
-Dreaming of trip to Thailand and wondering what to visit while you're there? This API allows users to find and contribute to information about attractions in different cities throughout Thailand. Built with Knex and Express and stored in a PostgreSQL database.  
+Dreaming of a trip to Thailand and wondering what to visit while you're there? This API allows users to find and contribute to information about attractions in different cities throughout Thailand. Built with Knex and Express and stored in a PostgreSQL database.  
 
-### Heroku Deployment
+### Heroku Deployment: 
 
 ## API Calls
----
 ## GET
 > There are four endpoints to get data, two for cities data and two for attractions data
 
@@ -69,10 +68,9 @@ Dreaming of trip to Thailand and wondering what to visit while you're there? Thi
 ]
 ```    
 ### ```GET /api/v1/cities/:id```  
-Returns information on the specified city  
-**Example**  
+Returns information on the specified city   
 Request: ```/api/v1/cities/2```  
-Response:
+**Example Response** 
 ```
 [
     {
@@ -87,9 +85,8 @@ Response:
 ```  
 ### ```GET /api/v1/attractions/:id```  
 Returns information on the specified attraction   
-**Example**  
 Request: ```/api/v1/attractions/14```  
-Response:
+**Example Response**  
 ```
 [
     {
@@ -102,15 +99,14 @@ Response:
     }
 ]
 ```
----
 ## POST
 > There are two endpoints to create new data. One is to create a new city and the other for a new attraction. Upon success, both return the ```id``` of the newly created city or attraction
 
 ### ```POST /api/v1/cities```  
 **Required Input for Request Body**  
-| Name             | Type        | Description                                               |
-|------------------|-------------|-----------------------------------------------------------|
-|```city_name```   |```string``` | Name of a city in Thailand                                |
+| Name | Type  | Description |
+|---|---|---|
+|```city_name```|```string```| Name of a city in Thailand |
 |```avg_may_high```|```integer```| Degrees in farenheit of the city's average high during May|
 |```avg_may_low``` |```integer```| Degrees in farenheit of the city's average low during May |  
 **Example Response**
@@ -138,7 +134,6 @@ Response:
   "city_id": 2
 }
 ```  
----
 ## DELETE  
 > There are two endpoints to delete data. One to delete an attraction and the other to delete a city — please note, any attractions associated with that city will also be deleted
 
