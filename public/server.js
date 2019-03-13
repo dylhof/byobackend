@@ -118,7 +118,9 @@ app.delete('/api/v1/attractions/:id', (req, res) => {
       } else {
         database('attractions').where('id', req.params.id).del()
           .then(() => {
-            res.status(202).json('Sucessfully deleted attraction');
+            res.status(202).json(
+              `Sucessfully deleted attraction with id: ${req.params.id}`
+            );
           })
           .catch(error => {
             res.status(500).json({ error });
