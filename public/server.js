@@ -93,13 +93,28 @@ app.post('/api/v1/attractions', (req, res) => {
       );
     }
   }
-  database('attractions').insert(attraction, 'id')
-    .then(attraction => {
-      res.status(201).json({ id: attraction[0] });
+
+  let cityFound = false;
+  database('cities').select()
+    .then(cities => {
+      cities.forEach(city => {
+        if (city.id === parseInt(attraction.city_id)) {
+          cityFound = true;
+        }
+      });
+      if (!cityFound) {
+        return res.status(422).json(
+          `Cannot add an attraction without a city. No city exists with an id of: ${attraction.city_id}`
+        );
+      }
+      database('attractions').insert(attraction, 'id')
+        .then(attraction => {
+          res.status(201).json({ id: attraction[0] });
+        })
+        .catch(error => {
+          res.status(500).json({ error })
+        });
     })
-    .catch(error => {
-      res.status(500).json({ error })
-    });
 });
 
 app.delete('/api/v1/attractions/:id', (req, res) => {
