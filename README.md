@@ -2,7 +2,8 @@
 Dreaming of a trip to Thailand and wondering what to visit while you're there? This API allows users to find and contribute to information about attractions in different cities throughout Thailand. Built with Knex and Express and stored in a PostgreSQL database.  
 
 ### Heroku Deployment: 
-
+Cities: https://byobackend.herokuapp.com/api/v1/cities  
+Attractions: https://byobackend.herokuapp.com/api/v1/attractions  
 ## API Calls
 ## GET
 > There are four endpoints to get data, two for cities data and two for attractions data
