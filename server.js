@@ -4,9 +4,10 @@ const database = require('knex')(configuration);
 
 const express = require('express');
 const app = express();
-
-app.set('port', process.env.PORT || 3000);
+const cors = require('cors');
+app.set('port', process.env.PORT || 3001);
 app.use(express.json());
+app.use(cors());
 app.listen(app.get('port'), () => {
   console.log(`App is running on localhost:${app.get('port')}`);
 });
