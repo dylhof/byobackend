@@ -12,6 +12,10 @@ app.listen(app.get('port'), () => {
   console.log(`App is running on localhost:${app.get('port')}`);
 });
 
+app.get('/', (request, response) => {
+  response.send('API with information about attractions in different cities throughout Thailand ')
+});
+
 app.get('/api/v1/cities', (req, res) => {
   database('cities').select()
     .then(cities => {
