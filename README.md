@@ -2,8 +2,8 @@
 Dreaming of a trip to Thailand and wondering what to visit while you're there? This API allows users to find and contribute to information about attractions in different cities throughout Thailand. Built with Knex and Express and stored in a PostgreSQL database.  
 
 ### Heroku Deployment: 
-Cities: https://byobackend.herokuapp.com/api/v1/cities  
-Attractions: https://byobackend.herokuapp.com/api/v1/attractions  
+https://byobackend.herokuapp.com  
+ 
 ## API Calls
 ## GET
 > There are four endpoints to get data, two for cities data and two for attractions data
@@ -112,7 +112,7 @@ Request: ```/api/v1/attractions/14```
 | `avg_may_high`      | `integer`      |   Degrees in farenheit of the city's average high during May |
 | `avg_may_low`  | `integer`     |    Degrees in farenheit of the city's average low during May | 
   
-**Example Response**
+**Example Request**
 ```
 {
   "city_name": "Phuket",
@@ -131,7 +131,7 @@ Request: ```/api/v1/attractions/14```
 | `city_id`  | `integer`     |    Id of the city the attraction is located in | 
    
 
-**Example Response**
+**Example Request**
 ```
 {
   "name": "Wat Phra That Doi Suthep",
